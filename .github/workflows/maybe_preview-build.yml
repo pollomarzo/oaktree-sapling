@@ -1,0 +1,39 @@
+name: PR Preview Build
+
+on:
+  pull_request:
+
+concurrency:
+  group: preview-${{ github.head_ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Micromamba
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-file: .devcontainer/environment.yml
+          generate-run-shell: true
+          cache-environment: true
+          cache-downloads: true
+
+      - name: Install npm dependencies
+        run: npm install
+
+      - name: Myst build
+        run: myst build --html
+        shell: micromamba-shell {0}
+
+      - name: Save PR number
+        run: echo "${{ github.event.number }}" > _build/html/.pr_number
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: preview-build
+          path: _build/html

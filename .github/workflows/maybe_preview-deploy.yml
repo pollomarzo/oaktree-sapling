@@ -1,0 +1,43 @@
+name: PR Preview Deploy
+
+on:
+  workflow_run:
+    workflows: ["PR Preview Build"]
+    types:
+      - completed
+
+permissions:
+  pull-requests: write
+  deployments: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: preview-build
+          path: preview
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Read PR number
+        id: pr
+        run: echo "number=$(cat preview/.pr_number)" >> "$GITHUB_OUTPUT"
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        id: deploy
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy preview --project-name=oaktree-sapling --branch=pr-${{ steps.pr.outputs.number }}
+
+      - name: Comment preview URL on PR
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          number: ${{ steps.pr.outputs.number }}
+          message: |
+            Preview deployed! ${{ steps.deploy.outputs.deployment-url }}
