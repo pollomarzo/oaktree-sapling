@@ -21,7 +21,7 @@ site:
     favicon: https://raw.githubusercontent.com/impact-scholars/impact-scholars.github.io/v0.1.0/static/logos/logo-black.svg
     logo: https://raw.githubusercontent.com/impact-scholars/impact-scholars.github.io/v0.1.0/static/logos/logo-black.svg
     logo_dark: https://raw.githubusercontent.com/impact-scholars/impact-scholars.github.io/v0.1.0/static/logos/logo-white.svg
-    style: https://raw.githubusercontent.com/impact-scholars/impact-scholars.github.io/v0.1.0/static/custom.css
+    style: https://raw.githubusercontent.com/pollomarzo/oaktree-sapling/isp-main/static/custom.css
     # favicon: ./static/logos/logo-black.svg
     # logo: ./static/logos/logo-black.svg
     # logo_dark: ./static/logos/logo-white.svg

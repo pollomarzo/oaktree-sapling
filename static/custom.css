@@ -1,136 +1,188 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Inter:wght@400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Inter:wght@400;500&display=swap");
 
-/* ── Palette ────────────────────────────────────────────── */
-/*
-  Neuromatch brand purple scale (replaces Tailwind blue throughout):
-    p-50   #f0efff   very light purple  (≈ blue-50)
-    p-100  #e0dfff                      (≈ blue-100)
-    p-200  #c5c4f0                      (≈ blue-200)
-    p-400  #8b8ad0                      (≈ blue-400)
-    p-500  #5958b0                      (≈ blue-500)
-    p-600  #44439c   brand purple       (≈ blue-600)
-    p-700  #3a3988                      (≈ blue-700)
-    p-800  #2a2952   deep purple        (≈ blue-800/900)
-    p-900  #1f1e3d   near-black purple  (≈ blue-900)
-
-  Semantic vars:
-    --color-heading    p-800
-    --color-link       p-600  (light: p-600 / dark: p-200)
-    --color-link-hover p-800  (light: p-800 / dark: p-50)
-    --color-muted      #515075
-    --color-active-bg  p-600 @ 20%
+/* ── ISP Color Scheme ─────────────────────────────────────
+   Primary purple: #43439e (brand)
+   
+   Purple scale for derived values:
+     p-50   #f5f4ff   very light purple
+     p-100  #e8e7ff   light purple
+     p-200  #d1d0f5   medium-light
+     p-300  #a6a5e0   medium
+     p-400  #8b8ad0   lighter (link underline)
+     p-500  #6363be   lighter (hover)
+     p-600  #43439e   brand purple
+     p-700  #343280   darker (link)
+     p-800  #29266a   deep purple (heading)
+     p-900  #1a1840   near-black purple
 */
 
 :root {
-  --p-50:  #f0efff;
-  --p-100: #e0dfff;
-  --p-200: #c5c4f0;
-  --p-400: #8b8ad0;
-  --p-500: #5958b0;
-  --p-600: #44439c;
-  --p-700: #3a3988;
-  --p-800: #2a2952;
-  --p-900: #1f1e3d;
+  /* ── Accent tokens (purple) ──────────────────────────── */
+  --myst-color-primary: #43439e;
+  --myst-color-primary-hover: #343280;
 
-  --color-heading:    var(--p-800);
-  --color-link:       var(--p-600);
-  --color-link-hover: var(--p-800);
-  --color-muted:      #515075;
-  --color-active-bg:  #44439c33; /* p-600 @ ~20% */
+  --myst-color-heading: #29266a;
+
+  --myst-color-link: #343280;
+  --myst-color-link-hover: #6363be;
+  --myst-color-link-underline: #8b8ad0;
+
+  --myst-color-active: #43439e;
+  --myst-color-active-bg: rgba(67, 67, 158, 0.15);
+  --myst-color-active-surface: #f5f4ff;
+
+  --myst-color-focus-ring: #43439e;
+  --myst-color-focus-outline: #d1d0f5;
+
+  --myst-color-accent-surface: #f5f4ff;
+  --myst-color-accent-surface-border: #d1d0f5;
+  --myst-color-accent-surface-text: #1a1840;
+
+  /* ── Neutral tokens (grays) ──────────────────────────── */
+  --myst-color-bg: #ffffff;
+  --myst-color-bg-alt: #f8f9fa;
+  --myst-color-surface: #f1f3f5;
+  --myst-color-surface-hover: #e9ecef;
+  --myst-color-text: #212529;
+  --myst-color-text-secondary: #495057;
+  --myst-color-text-tertiary: #6c757d;
+  --myst-color-border: #dee2e6;
+  --myst-color-border-strong: #ced4da;
+
+  /* ── Admonition tokens ───────────────────────────────── */
+  /* Info (teal/blue) */
+  --myst-info: #008cbf;
+  --myst-info-bg: rgba(0, 140, 191, 0.1);
+  --myst-info-text: #005f80;
+
+  /* Success (green) */
+  --myst-success: #2e7d32;
+  --myst-success-bg: rgba(46, 125, 50, 0.1);
+  --myst-success-text: #1b5e20;
+
+  /* Warning (amber) */
+  --myst-warning: #f9a825;
+  --myst-warning-bg: rgba(249, 168, 37, 0.15);
+  --myst-warning-text: #e65100;
+
+  /* Danger (coral/red) */
+  --myst-danger: #d32f2f;
+  --myst-danger-bg: rgba(255, 118, 118, 0.12);
+  --myst-danger-text: #b71c1c;
+
+  /* Orange */
+  --myst-orange: #e65100;
+  --myst-orange-bg: rgba(230, 81, 0, 0.1);
+  --myst-orange-text: #bf360c;
+
+  /* Purple (brand) */
+  --myst-purple: #43439e;
+  --myst-purple-bg: rgba(67, 67, 158, 0.1);
+  --myst-purple-text: #29266a;
+
+  /* Gray */
+  --myst-gray: #6c757d;
+  --myst-gray-bg: rgba(108, 117, 125, 0.1);
+  --myst-gray-text: #495057;
 }
 
 .dark {
-  --color-link:       var(--p-200);
-  --color-link-hover: var(--p-50);
-  --color-link-active: var(--p-200);
-  --color-muted:      #9998c8;
-  --color-active-bg:  #b8b7e840; /* p-200 @ ~25% */
+  /* ── Accent tokens (purple, inverted) ───────────────── */
+  --myst-color-primary: #8b8ad0;
+  --myst-color-primary-hover: #a6a5e0;
+  --myst-color-heading: #e8e7ff;
+
+  --myst-color-link: #8b8ad0;
+  --myst-color-link-hover: #a6a5e0;
+  --myst-color-link-underline: #6363be;
+
+  --myst-color-active: #8b8ad0;
+  --myst-color-active-bg: rgba(139, 138, 208, 0.2);
+  --myst-color-active-surface: #1a1840;
+
+  --myst-color-focus-ring: #8b8ad0;
+  --myst-color-focus-outline: #343280;
+
+  --myst-color-accent-surface: #1a184050;
+  --myst-color-accent-surface-border: #29266a;
+  --myst-color-accent-surface-text: #e8e7ff;
+
+  /* ── Neutral tokens (dark) ────────────────────────────── */
+  --myst-color-bg: #121212;
+  --myst-color-bg-alt: #1a1a2e;
+  --myst-color-surface: #252540;
+  --myst-color-surface-hover: #32325a;
+  --myst-color-text: #e9ecef;
+  --myst-color-text-secondary: #adb5bd;
+  --myst-color-text-tertiary: #868e96;
+  --myst-color-border: #495057;
+  --myst-color-border-strong: #6c757d;
+
+  /* ── Admonition tokens (dark) ────────────────────────── */
+  /* Info */
+  --myst-info: #4db8db;
+  --myst-info-bg: rgba(77, 184, 219, 0.15);
+  --myst-info-text: #4db8db;
+
+  /* Success */
+  --myst-success: #66bb6a;
+  --myst-success-bg: rgba(102, 187, 106, 0.15);
+  --myst-success-text: #81c784;
+
+  /* Warning */
+  --myst-warning: #ffca28;
+  --myst-warning-bg: rgba(255, 202, 40, 0.15);
+  --myst-warning-text: #ffd54f;
+
+  /* Danger */
+  --myst-danger: #ff7676;
+  --myst-danger-bg: rgba(255, 118, 118, 0.15);
+  --myst-danger-text: #ff8a80;
+
+  /* Orange */
+  --myst-orange: #ff9800;
+  --myst-orange-bg: rgba(255, 152, 0, 0.15);
+  --myst-orange-text: #ffb74d;
+
+  /* Purple */
+  --myst-purple: #8b8ad0;
+  --myst-purple-bg: rgba(139, 138, 208, 0.15);
+  --myst-purple-text: #a6a5e0;
+
+  /* Gray */
+  --myst-gray: #adb5bd;
+  --myst-gray-bg: rgba(173, 181, 189, 0.15);
+  --myst-gray-text: #ced4da;
 }
 
 /* ── Typography ─────────────────────────────────────────── */
 
 body,
-p, li, td, th, blockquote {
-  font-family: 'Inter', sans-serif;
+p,
+li,
+td,
+th,
+blockquote {
+  font-family: "Inter", sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
 .myst-home-link {
-  font-family: 'Rubik', sans-serif;
+  font-family: "Rubik", sans-serif;
 }
 
 a.myst-home-link {
-  font-family: 'Rubik', sans-serif;
+  font-family: "Rubik", sans-serif;
   font-weight: 500;
-}
-
-/* ── Semantic color rules ──────────────────────────────── */
-
-.link, .hover-link, .hover-link:is(.dark *), .link:is(.dark *) {
-  color: var(--color-link);
-  text-decoration-color: var(--color-link);
-}
-
-.link:hover, .hover-link:hover, .hover-link:hover:is(.dark *), .link:hover:is(.dark *)  {
-  color: var(--color-link-hover);
-  text-decoration-color: var(--color-link-hover);
-}
-
-/* unfortunate, but needed */
-.dark\:text-blue-200:is(.dark *) {
-  color: var(--p-200) !important;
 }
 
 /* ── Sidebar footer ─────────────────────────────────────── */
 
 .myst-primary-sidebar-footer {
   font-size: 0.8rem;
-  color: var(--color-muted);
 }
-
-.myst-primary-sidebar-footer a {
-  color: var(--color-link);
-}
-
-/* ── Tailwind blue → brand purple ───────────────────────── */
-
-/* text */
-.text-blue-50  { color: var(--p-50)  !important; }
-.text-blue-200 { color: var(--p-200) !important; }
-.text-blue-400 { color: var(--p-400) !important; }
-.text-blue-500 { color: var(--p-500) !important; }
-.text-blue-600 { color: var(--p-600) !important; }
-.text-blue-700 { color: var(--p-700) !important; }
-.text-blue-800 { color: var(--p-800) !important; }
-.text-blue-900 { color: var(--p-900) !important; }
-
-/* backgrounds */
-.bg-blue-50          { background-color: var(--p-50)  !important; }
-.bg-blue-100         { background-color: var(--p-100) !important; }
-.bg-blue-500         { background-color: var(--p-500) !important; }
-.bg-blue-600         { background-color: var(--p-600) !important; }
-.bg-blue-800         { background-color: var(--p-800) !important; }
-.bg-blue-900         { background-color: var(--p-900) !important; }
-/* with opacity modifiers */
-.bg-blue-50\/80      { background-color: #f0efffe0     !important; } /* p-50 @ 80% */
-.bg-blue-300\/30     { background-color: var(--color-active-bg) !important; }
-.bg-blue-900\/30     { background-color: #1f1e3d4d     !important; } /* p-900 @ 30% */
-
-/* borders */
-.border-blue-200     { border-color: var(--p-200) !important; }
-.border-blue-400     { border-color: var(--p-400) !important; }
-.border-blue-500     { border-color: var(--p-500) !important; }
-.border-blue-600     { border-color: var(--p-600) !important; }
-.border-blue-800     { border-color: var(--p-800) !important; }
-.border-b-blue-600   { border-bottom-color: var(--p-600) !important; }
-.border-l-blue-400   { border-left-color: var(--p-400) !important; }
-.border-l-blue-500   { border-left-color: var(--p-500) !important; }
-/* with opacity modifier */
-.border-blue-500\/60 { border-color: #5958b099 !important; } /* p-500 @ 60% */
-
-/* fill, ring, outline */
-.fill-blue-900    { fill: var(--p-900) !important; }
-.ring-blue-500    { --tw-ring-color: var(--p-500) !important; }
-.outline-blue-200 { outline-color: var(--p-200) !important; }
-
-
