@@ -5,7 +5,7 @@ project:
   title: Impact Scholars
 
 site:
-  template: book-theme
+  template: https://github.com/pollomarzo/myst-theme/releases/download/v0.2.0+test/book-theme.zip
   parts:
     # primary_sidebar_footer: ./static/parts/sidebar-footer.md
     primary_sidebar_footer: https://raw.githubusercontent.com/impact-scholars/impact-scholars.github.io/v0.1.0/static/parts/sidebar-footer.md
